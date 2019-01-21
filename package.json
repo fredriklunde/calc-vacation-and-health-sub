@@ -2,6 +2,7 @@
   "name": "calc-vacation-and-health-sub",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://fredriklunde.github.io/calc-vacation-and-health-sub/",
   "dependencies": {
     "react": "^16.7.0",
     "react-date-picker": "^7.2.0",
@@ -9,6 +10,8 @@
     "react-scripts": "2.1.3"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
