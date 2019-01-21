@@ -32,7 +32,8 @@ class App extends React.Component {
     this.setState({dayOfYear: dayOfYear})
     const workingDaysThisYear = this.daysOfAYear(date) - dayOfYear;
     this.setState({
-      healtCareSubThisYear: Math.round(healtCareSub * (workingDaysThisYear / this.daysOfAYear(date)))
+      healtCareSubThisYear: Math.round(healtCareSub * (workingDaysThisYear / this.daysOfAYear(date))),
+      message: 'Baserat på antal dagar du kommer att jobba i år är detta beloppet dom du får i friskvårdsbidrag.'
     }) 
   }
  
@@ -55,16 +56,6 @@ class App extends React.Component {
     }
   }
 
-  renderStartDate(){
-    if(this.state.startDate){
-      return (
-        <div>
-          Startdatum: {this.state.startDate.toDateString()}
-        </div>
-      )
-    }
-  }
-
   renderMessage(){
     if(this.state.message){
       return(
@@ -78,16 +69,19 @@ class App extends React.Component {
     render(){
         return (
             <div className="ui container">
-              <h1>Friskvårdsbidragsuträknare</h1>
-              <h3>Välj ett startdatum för att räkna ut hur mycket Friskvårdsbidrag du är berättigad till i år.</h3>
-              <DatePicker
-                onChange={this.onDateChange}
-                value={this.state.startDate}
-              />
-              {this.renderStartDate()}
-              <h5>
-                Friskvårdsbidrag: {this.state.healtCareSubThisYear}
-              </h5>
+              <h1 className="ui header">Friskvårdsbidragsuträknare</h1>
+              <div className="sub header">Välj ett startdatum för att räkna ut hur mycket Friskvårdsbidrag du är berättigad till i år.</div>
+              <div style={{paddingTop: '30px'}}>
+                <DatePicker
+                  onChange={this.onDateChange}
+                  value={this.state.startDate}
+                />
+              </div>
+              <h2 class="ui icon header">
+                <div class="content">
+                  Friskvårdsbidrag: {this.state.healtCareSubThisYear}
+                </div>
+              </h2>
               {this.renderMessage()}
             </div>
           );
