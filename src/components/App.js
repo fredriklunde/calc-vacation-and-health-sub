@@ -33,7 +33,7 @@ class App extends React.Component {
     const workingDaysThisYear = this.daysOfAYear(date) - dayOfYear;
     this.setState({
       healtCareSubThisYear: Math.round(healtCareSub * (workingDaysThisYear / this.daysOfAYear(date))),
-      message: 'Baserat på antal dagar du kommer att jobba i år är detta beloppet dom du får i friskvårdsbidrag.'
+      message: 'Baserat på antal dagar du kommer att jobba i år.'
     }) 
   }
  
