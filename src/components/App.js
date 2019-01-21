@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from 'react-date-picker';
 
+const healtCareSub = 5000;
 
 class App extends React.Component {
   constructor(props) {
@@ -8,7 +9,8 @@ class App extends React.Component {
     this.state = {
       startDate: null,
       dayOfYear: null,
-      healtCareSub: 0
+      healtCareSubThisYear: 0,
+      message: null
     };
     this.onDateChange = this.onDateChange.bind(this);
   }
@@ -30,7 +32,7 @@ class App extends React.Component {
     this.setState({dayOfYear: dayOfYear})
     const workingDaysThisYear = this.daysOfAYear(date) - dayOfYear;
     this.setState({
-      healtCareSub: 5000 * (workingDaysThisYear / this.daysOfAYear(date))
+      healtCareSubThisYear: Math.round(healtCareSub * (workingDaysThisYear / this.daysOfAYear(date)))
     }) 
   }
  
@@ -39,6 +41,16 @@ class App extends React.Component {
       startDate: date,
     });
     if(date){
+      if(date.getFullYear() < new Date().getFullYear()){
+        this.setState({
+          healtCareSubThisYear: 5000,
+          message: 'Eftersom du började förra året så har du fullt friskvårdsbidrag i år.'
+        }) 
+        return
+      }
+      this.setState({
+        message: null
+      })
       this.calculateHealthCareSub(date);
     }
   }
@@ -51,7 +63,16 @@ class App extends React.Component {
         </div>
       )
     }
-    return
+  }
+
+  renderMessage(){
+    if(this.state.message){
+      return(
+        <h5 className="ui info message">
+          {this.state.message}
+        </h5>
+      )
+    }
   }
     
     render(){
@@ -65,8 +86,9 @@ class App extends React.Component {
               />
               {this.renderStartDate()}
               <h5>
-                Friskvårdsbidrag: {this.state.healtCareSub}
+                Friskvårdsbidrag: {this.state.healtCareSubThisYear}
               </h5>
+              {this.renderMessage()}
             </div>
           );
     }
