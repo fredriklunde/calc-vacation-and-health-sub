@@ -48,7 +48,6 @@ class App extends React.Component {
       return (
         <div>
           Startdatum: {this.state.startDate.toDateString()}
-          DayOfYead: {this.state.dayOfYear}
         </div>
       )
     }
