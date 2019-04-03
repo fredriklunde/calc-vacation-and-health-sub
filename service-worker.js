@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/calc-vacation-and-health-sub/precache-manifest.5654fe3db5cfede8e8bad5ec7da99546.js"
+  "/calc-vacation-and-health-sub/precache-manifest.88086816516be5c51e51213edb4c5c57.js"
 );
 
 workbox.clientsClaim();
