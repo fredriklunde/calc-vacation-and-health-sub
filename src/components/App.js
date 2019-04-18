@@ -50,7 +50,7 @@ class App extends React.Component {
     const numberOfDaysOfEarningYear = this.daysOfAYear(firstDayOfEarningYear.getFullYear() + 1);
     const numberOfDaysWorkedThisEarningYear = numberOfDaysOfEarningYear - startingDateDayNumberOfEarningYear + 1
     const numberOfVacationDays = Math.ceil(numberOfDaysWorkedThisEarningYear * this.defaultNumberOfPaidVacationDays / numberOfDaysOfEarningYear)
-    if(numberOfVacationDays <= 0){
+    if (numberOfVacationDays <= 0) {
       return 0;
     }
     return numberOfVacationDays;
@@ -117,12 +117,14 @@ class App extends React.Component {
           healtCareSubThisYear: 5000,
           message: 'Eftersom du började förra året så har du fullt friskvårdsbidrag i år.'
         })
-      }else{
+      } else {
         this.calculateHealthCareSub(date);
+        this.setState({
+          message: null
+        })
       }
-      this.setState({
-        message: null
-      })
+
+
       this.calculateNumberOfVacationDaysNextPeriod(date)
       this.calculateNumberOfVacationDaysThisPeriod(date)
     }
