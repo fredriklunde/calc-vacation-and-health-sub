@@ -1,13 +1,20 @@
 {
-  "main.js": "/calc-vacation-and-health-sub/static/js/main.9c90253a.chunk.js",
-  "main.js.map": "/calc-vacation-and-health-sub/static/js/main.9c90253a.chunk.js.map",
-  "static/css/1.3c18aa6c.chunk.css": "/calc-vacation-and-health-sub/static/css/1.3c18aa6c.chunk.css",
-  "static/js/1.d45ee64f.chunk.js": "/calc-vacation-and-health-sub/static/js/1.d45ee64f.chunk.js",
-  "static/js/1.d45ee64f.chunk.js.map": "/calc-vacation-and-health-sub/static/js/1.d45ee64f.chunk.js.map",
-  "runtime~main.js": "/calc-vacation-and-health-sub/static/js/runtime~main.e8268ac1.js",
-  "runtime~main.js.map": "/calc-vacation-and-health-sub/static/js/runtime~main.e8268ac1.js.map",
-  "static/css/1.3c18aa6c.chunk.css.map": "/calc-vacation-and-health-sub/static/css/1.3c18aa6c.chunk.css.map",
-  "index.html": "/calc-vacation-and-health-sub/index.html",
-  "precache-manifest.b6245d06bf59410dc199197ffe8ec666.js": "/calc-vacation-and-health-sub/precache-manifest.b6245d06bf59410dc199197ffe8ec666.js",
-  "service-worker.js": "/calc-vacation-and-health-sub/service-worker.js"
+  "files": {
+    "main.js": "/calc-vacation-and-health-sub/static/js/main.f50f40bd.chunk.js",
+    "main.js.map": "/calc-vacation-and-health-sub/static/js/main.f50f40bd.chunk.js.map",
+    "runtime-main.js": "/calc-vacation-and-health-sub/static/js/runtime-main.8d6a2df3.js",
+    "runtime-main.js.map": "/calc-vacation-and-health-sub/static/js/runtime-main.8d6a2df3.js.map",
+    "static/css/2.05e7c055.chunk.css": "/calc-vacation-and-health-sub/static/css/2.05e7c055.chunk.css",
+    "static/js/2.3355efe4.chunk.js": "/calc-vacation-and-health-sub/static/js/2.3355efe4.chunk.js",
+    "static/js/2.3355efe4.chunk.js.map": "/calc-vacation-and-health-sub/static/js/2.3355efe4.chunk.js.map",
+    "index.html": "/calc-vacation-and-health-sub/index.html",
+    "static/css/2.05e7c055.chunk.css.map": "/calc-vacation-and-health-sub/static/css/2.05e7c055.chunk.css.map",
+    "static/js/2.3355efe4.chunk.js.LICENSE.txt": "/calc-vacation-and-health-sub/static/js/2.3355efe4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8d6a2df3.js",
+    "static/css/2.05e7c055.chunk.css",
+    "static/js/2.3355efe4.chunk.js",
+    "static/js/main.f50f40bd.chunk.js"
+  ]
 }
