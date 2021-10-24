@@ -69,8 +69,9 @@ class App extends React.Component {
       <div className="ui container">
         <h1 className="ui header">Friskvårdsbidragsuträknare</h1>
         <div className="sub header">
-          Välj ett startdatum för att räkna ut hur mycket Friskvårdsbidrag du är
-          berättigad till i år.
+          Applikationen räknar ut hur mycket semeser du hinner jobba in till
+          nästa semesterår, samt hur mycket Friskvårdsbidrag du har rätt till
+          under kalenderåret du blev anställd.
         </div>
         <div style={{ paddingTop: "30px", paddingBottom: "30px" }}>
           <DatePicker
