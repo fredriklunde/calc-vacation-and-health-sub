@@ -18,11 +18,19 @@ class App extends React.Component {
     this.onDateChange = this.onDateChange.bind(this);
   }
 
-  setHealthCareSub(date){
-    this.setState({
-      healtCareSubThisYear: calculateHealthCareSub(date),
-      message: "Baserat på antal dagar du kommer att jobba i år.",
-    });
+  setHealthCareSub(date) {
+    if (date.getFullYear() < new Date().getFullYear()) {
+      this.setState({
+        healtCareSubThisYear: 5000,
+        message:
+          "Eftersom du började förra året så har du fullt friskvårdsbidrag i år.",
+      });
+    } else {
+      this.setState({
+        healtCareSubThisYear: calculateHealthCareSub(date),
+        message: "Baserat på antal dagar du kommer att jobba i år.",
+      });
+    }
   }
 
   calculateNumberOfVacationDaysNextPeriod(startingDate) {
@@ -87,23 +95,9 @@ class App extends React.Component {
     this.setState({
       startDate: date,
     });
-    if (date) {
-      if (date.getFullYear() < new Date().getFullYear()) {
-        this.setState({
-          healtCareSubThisYear: 5000,
-          message:
-            "Eftersom du började förra året så har du fullt friskvårdsbidrag i år.",
-        });
-      } else {
-        this.setHealthCareSub(date);
-        this.setState({
-          message: null,
-        });
-      }
-
-      this.calculateNumberOfVacationDaysNextPeriod(date);
-      this.calculateNumberOfVacationDaysThisPeriod(date);
-    }
+    this.setHealthCareSub(date);
+    this.calculateNumberOfVacationDaysNextPeriod(date);
+    this.calculateNumberOfVacationDaysThisPeriod(date);
   }
 
   renderMessage() {
