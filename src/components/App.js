@@ -3,6 +3,7 @@ import DatePicker from "react-date-picker";
 import {
   calculateNumberOfVacationDays,
   calculateHealthCareSub,
+  calculateNumberOfVacationDaysNextPeriod,
 } from "../logic/calc";
 
 class App extends React.Component {
@@ -33,32 +34,9 @@ class App extends React.Component {
     }
   }
 
-  calculateNumberOfVacationDaysNextPeriod(startingDate) {
-    //the first day of the earning year is april 1st
-    let firstDayOfEarningYear = new Date(new Date().getFullYear() - 1, 3, 1);
-    if (new Date().getMonth() >= 3) {
-      firstDayOfEarningYear = new Date(new Date().getFullYear(), 3, 1);
-    }
-    /*
-    If having started before the first day of the current earning year, we can assume that
-    the employee will have full vacation
-    */
-    if (startingDate < firstDayOfEarningYear) {
-      this.setState({
-        vacationDaysNextPeriod: 25,
-      });
-      return;
-    }
-    /*
-      Antalet betalda semesterdagar beräknas som: 
-      Antalet semesterdagar per år * antalet anställningsdagar aktuellt intjänandeår/ antal dagar på året 
-      (avrundas alltid uppåt till hela semesterdagar)
-    */
+  setVactationDays(date) {
     this.setState({
-      vacationDaysNextPeriod: calculateNumberOfVacationDays(
-        startingDate,
-        firstDayOfEarningYear
-      ),
+      vacationDaysNextPeriod: calculateNumberOfVacationDaysNextPeriod(date),
     });
   }
 
@@ -96,7 +74,7 @@ class App extends React.Component {
       startDate: date,
     });
     this.setHealthCareSub(date);
-    this.calculateNumberOfVacationDaysNextPeriod(date);
+    this.setVactationDays(date);
     this.calculateNumberOfVacationDaysThisPeriod(date);
   }
 
