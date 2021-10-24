@@ -1,10 +1,10 @@
 const defaultNumberOfPaidVacationDays = 25;
 const healtCareSub = 5000;
 
-export const getYearOfFirstVacationPeriod = function(startDate) {
-  let firstDayOfVacationYear = new Date(startDate.getFullYear(), 3, 1);
-  if (startDate.getMonth() >= 3) {
-    firstDayOfVacationYear = new Date(startDate.getFullYear() + 1, 3, 1);
+export const getYearOfFirstVacationPeriod = function(startingDate) {
+  let firstDayOfVacationYear = new Date(startingDate.getFullYear(), 3, 1);
+  if (startingDate.getMonth() >= 3) {
+    firstDayOfVacationYear = new Date(startingDate.getFullYear() + 1, 3, 1);
   }
   return firstDayOfVacationYear.getFullYear();
 }
@@ -17,8 +17,8 @@ const daysOfAYear = function (year) {
   return isLeapYear(year) ? 366 : 365;
 };
 
-const calculateDayOfYear = function (date) {
-  return Math.ceil((date - new Date(date.getFullYear(), 0, 1)) / 86400000);
+const calculateDayOfYear = function (startingDate) {
+  return Math.ceil((startingDate - new Date(startingDate.getFullYear(), 0, 1)) / 86400000);
 };
 
 /*
@@ -48,11 +48,11 @@ export const calculateNumberOfVacationDays = function (
   return numberOfVacationDays;
 };
 
-export const calculateHealthCareSub = function (date) {
-  const dayOfYear = calculateDayOfYear(date);
-  const workingDaysThisYear = daysOfAYear(date) - dayOfYear;
+export const calculateHealthCareSub = function (startingDate) {
+  const dayOfYear = calculateDayOfYear(startingDate);
+  const workingDaysThisYear = daysOfAYear(startingDate) - dayOfYear;
   const healtCareSubThisYear = Math.round(
-    healtCareSub * (workingDaysThisYear / daysOfAYear(date))
+    healtCareSub * (workingDaysThisYear / daysOfAYear(startingDate))
   );
   return healtCareSubThisYear;
 };
