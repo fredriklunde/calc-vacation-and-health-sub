@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://fredriklunde.github.io/calc-vacation-and-health-sub/",
   "dependencies": {
+    "moment": "^2.29.1",
     "react": "^16.14.0",
     "react-date-picker": "^7.10.0",
     "react-dom": "^16.14.0",

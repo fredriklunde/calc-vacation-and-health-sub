@@ -1,5 +1,6 @@
 import React from "react";
 import DatePicker from "react-date-picker";
+import moment from "moment";
 import {
   calculateHealthCareSub,
   calculateNumberOfVacationDaysNextPeriod,
@@ -46,6 +47,9 @@ class App extends React.Component {
   }
 
   onDateChange(date) {
+    if (!date) {
+      return;
+    }
     this.setState({
       startDate: date,
     });
@@ -83,27 +87,31 @@ class App extends React.Component {
           Välj ett startdatum för att räkna ut hur mycket Friskvårdsbidrag du är
           berättigad till i år.
         </div>
-        <div style={{ paddingTop: "30px" }}>
+        <div style={{ paddingTop: "30px", paddingBottom: "30px" }}>
           <DatePicker
             onChange={this.onDateChange}
             value={this.state.startDate}
           />
         </div>
-        <h2 className="ui icon header">
-          <div className="content">
+          <div>
+            Start Date:{" "}
+            {this.state.startDate
+              ? moment(this.state.startDate).format("YYYY-MM-DD")
+              : ""}
+          </div>
+          <div>
             Friskvårdsbidrag: {this.state.healtCareSubThisYear}
           </div>
-          <div className="content">
+          <div>
             Semester period 1/4/{getYearOfThisVacationPeriod()}-31/3/
             {getYearOfThisVacationPeriod() + 1}:{" "}
             {this.state.vacationDaysThisPeriod}
           </div>
-          <div className="content">
+          <div>
             Semester period 1/4/{getYearOfNextVacationPeriod()}-31/3/
             {getYearOfNextVacationPeriod() + 1}:{" "}
             {this.state.vacationDaysNextPeriod}
           </div>
-        </h2>
         {this.renderMessage()}
       </div>
     );
