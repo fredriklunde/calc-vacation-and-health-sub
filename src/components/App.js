@@ -1,19 +1,15 @@
 import React from "react";
 import DatePicker from "react-date-picker";
 import {
-  daysOfAYear,
-  calculateDayOfYear,
   calculateNumberOfVacationDays,
+  calculateHealthCareSub,
 } from "../logic/calc";
-
-const healtCareSub = 5000;
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       startDate: null,
-      dayOfYear: null,
       healtCareSubThisYear: 0,
       vacationDaysNextPeriod: 0,
       vacationDaysThisPeriod: 0,
@@ -22,14 +18,9 @@ class App extends React.Component {
     this.onDateChange = this.onDateChange.bind(this);
   }
 
-  calculateHealthCareSub(date) {
-    const dayOfYear = calculateDayOfYear(date);
-    this.setState({ dayOfYear: dayOfYear });
-    const workingDaysThisYear = daysOfAYear(date) - dayOfYear;
+  setHealthCareSub(date){
     this.setState({
-      healtCareSubThisYear: Math.round(
-        healtCareSub * (workingDaysThisYear / daysOfAYear(date))
-      ),
+      healtCareSubThisYear: calculateHealthCareSub(date),
       message: "Baserat på antal dagar du kommer att jobba i år.",
     });
   }
@@ -104,7 +95,7 @@ class App extends React.Component {
             "Eftersom du började förra året så har du fullt friskvårdsbidrag i år.",
         });
       } else {
-        this.calculateHealthCareSub(date);
+        this.setHealthCareSub(date);
         this.setState({
           message: null,
         });
