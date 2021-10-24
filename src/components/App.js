@@ -2,16 +2,16 @@ import React from "react";
 import DatePicker from "react-date-picker";
 import moment from "moment";
 import {
+  getYearOfFirstVacationPeriod,
   calculateHealthCareSub,
   calculateNumberOfVacationDaysNextPeriod,
-  calculateNumberOfVacationDaysThisPeriod,
 } from "../logic/calc";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: null,
+      startingDate: null,
       healtCareSubThisYear: 0,
       vacationDaysNextPeriod: 0,
       vacationDaysThisPeriod: 0,
@@ -20,19 +20,10 @@ class App extends React.Component {
     this.onDateChange = this.onDateChange.bind(this);
   }
 
-  setHealthCareSub(date) {
-    if (date.getFullYear() < new Date().getFullYear()) {
-      this.setState({
-        healtCareSubThisYear: 5000,
-        message:
-          "Eftersom du började förra året så har du fullt friskvårdsbidrag i år.",
-      });
-    } else {
-      this.setState({
-        healtCareSubThisYear: calculateHealthCareSub(date),
-        message: "Baserat på antal dagar du kommer att jobba i år.",
-      });
-    }
+  setHealthCareSub(startingDate) {
+    this.setState({
+      healtCareSubThisYear: calculateHealthCareSub(startingDate),
+    });
   }
 
   setVactationDays(startingDate) {
@@ -40,21 +31,17 @@ class App extends React.Component {
       vacationDaysNextPeriod:
         calculateNumberOfVacationDaysNextPeriod(startingDate),
     });
-    this.setState({
-      vacationDaysThisPeriod:
-        calculateNumberOfVacationDaysThisPeriod(startingDate),
-    });
   }
 
-  onDateChange(date) {
-    if (!date) {
+  onDateChange(startingDate) {
+    if (!startingDate) {
       return;
     }
     this.setState({
-      startDate: date,
+      startingDate: startingDate,
     });
-    this.setHealthCareSub(date);
-    this.setVactationDays(date);
+    this.setHealthCareSub(startingDate);
+    this.setVactationDays(startingDate);
   }
 
   renderMessage() {
@@ -63,23 +50,21 @@ class App extends React.Component {
     }
   }
 
+  renderVacationDaysText() {
+    if (this.state.startingDate) {
+      const yearOfFirstVacationYear = getYearOfFirstVacationPeriod(
+        this.state.startingDate
+      );
+      return (
+        <div>
+          Intjänade semesterdagar period 1/4/{yearOfFirstVacationYear} - 31/3/
+          {yearOfFirstVacationYear + 1}: {this.state.vacationDaysNextPeriod}
+        </div>
+      );
+    }
+  }
+
   render() {
-    function getYearOfNextVacationPeriod() {
-      let firstDayOfVacationYear = new Date(new Date().getFullYear(), 3, 1);
-      if (new Date().getMonth() >= 3) {
-        firstDayOfVacationYear = new Date(new Date().getFullYear() + 1, 3, 1);
-      }
-      return firstDayOfVacationYear.getFullYear();
-    }
-
-    function getYearOfThisVacationPeriod() {
-      let firstDayOfVacationYear = new Date(new Date().getFullYear() - 1, 3, 1);
-      if (new Date().getMonth() >= 3) {
-        firstDayOfVacationYear = new Date(new Date().getFullYear(), 3, 1);
-      }
-      return firstDayOfVacationYear.getFullYear();
-    }
-
     return (
       <div className="ui container">
         <h1 className="ui header">Friskvårdsbidragsuträknare</h1>
@@ -90,28 +75,23 @@ class App extends React.Component {
         <div style={{ paddingTop: "30px", paddingBottom: "30px" }}>
           <DatePicker
             onChange={this.onDateChange}
-            value={this.state.startDate}
+            value={this.state.startingDate}
           />
         </div>
-          <div>
-            Start Date:{" "}
-            {this.state.startDate
-              ? moment(this.state.startDate).format("YYYY-MM-DD")
-              : ""}
-          </div>
-          <div>
-            Friskvårdsbidrag: {this.state.healtCareSubThisYear}
-          </div>
-          <div>
-            Semester period 1/4/{getYearOfThisVacationPeriod()}-31/3/
-            {getYearOfThisVacationPeriod() + 1}:{" "}
-            {this.state.vacationDaysThisPeriod}
-          </div>
-          <div>
-            Semester period 1/4/{getYearOfNextVacationPeriod()}-31/3/
-            {getYearOfNextVacationPeriod() + 1}:{" "}
-            {this.state.vacationDaysNextPeriod}
-          </div>
+        <div>
+          Starting Date:{" "}
+          {this.state.startingDate
+            ? moment(this.state.startingDate).format("YYYY-MM-DD")
+            : ""}
+        </div>
+        <div>
+          Friskvårdsbidrag{" "}
+          {this.state.startingDate
+            ? moment(this.state.startingDate).format("YYYY")
+            : ""}
+          : {this.state.healtCareSubThisYear}
+        </div>
+        {this.renderVacationDaysText()}
         {this.renderMessage()}
       </div>
     );

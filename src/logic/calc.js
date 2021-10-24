@@ -1,6 +1,14 @@
 const defaultNumberOfPaidVacationDays = 25;
 const healtCareSub = 5000;
 
+export const getYearOfFirstVacationPeriod = function(startDate) {
+  let firstDayOfVacationYear = new Date(startDate.getFullYear(), 3, 1);
+  if (startDate.getMonth() >= 3) {
+    firstDayOfVacationYear = new Date(startDate.getFullYear() + 1, 3, 1);
+  }
+  return firstDayOfVacationYear.getFullYear();
+}
+
 function isLeapYear(year) {
   return year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
 }
@@ -29,7 +37,7 @@ export const calculateNumberOfVacationDays = function (
     firstDayOfEarningYear.getFullYear() + 1
   );
   const numberOfDaysWorkedThisEarningYear =
-    numberOfDaysOfEarningYear - startingDateDayNumberOfEarningYear + 1;
+    numberOfDaysOfEarningYear - startingDateDayNumberOfEarningYear;
   const numberOfVacationDays = Math.ceil(
     (numberOfDaysWorkedThisEarningYear * defaultNumberOfPaidVacationDays) /
       numberOfDaysOfEarningYear
@@ -50,45 +58,11 @@ export const calculateHealthCareSub = function (date) {
 };
 
 export const calculateNumberOfVacationDaysNextPeriod = function (startingDate) {
-  var numberOfVacationDays = 25;
+  var numberOfVacationDays = defaultNumberOfPaidVacationDays;
   //the first day of the earning year is april 1st
-  let firstDayOfEarningYear = new Date(new Date().getFullYear() - 1, 3, 1);
-  if (new Date().getMonth() >= 3) {
-    firstDayOfEarningYear = new Date(new Date().getFullYear(), 3, 1);
-  }
-  /*
-  If having started before the first day of the current earning year, we can assume that
-  the employee will have full vacation
-  */
-  if (startingDate < firstDayOfEarningYear) {
-    return numberOfVacationDays;
-  }
-  /*
-    Antalet betalda semesterdagar beräknas som: 
-    Antalet semesterdagar per år * antalet anställningsdagar aktuellt intjänandeår/ antal dagar på året 
-    (avrundas alltid uppåt till hela semesterdagar)
-  */
-  numberOfVacationDays = calculateNumberOfVacationDays(
-    startingDate,
-    firstDayOfEarningYear
-  );
-  return numberOfVacationDays;
-};
-
-export const calculateNumberOfVacationDaysThisPeriod = function (startingDate) {
-  var numberOfVacationDays = 25;
-
-  //the first day of the earning year is april 1st
-  let firstDayOfEarningYear = new Date(new Date().getFullYear() - 2, 3, 1);
-  if (new Date().getMonth() >= 3) {
-    firstDayOfEarningYear = new Date(new Date().getFullYear() - 1, 3, 1);
-  }
-  /*
-  If having started before the first day of the current earning year, we can assume that
-  the employee will have full vacation
-  */
-  if (startingDate < firstDayOfEarningYear) {
-    return numberOfVacationDays;
+  let firstDayOfEarningYear = new Date(startingDate.getFullYear() - 1, 3, 1);
+  if (startingDate.getMonth() >= 3) {
+    firstDayOfEarningYear = new Date(startingDate.getFullYear(), 3, 1);
   }
   /*
     Antalet betalda semesterdagar beräknas som: 
