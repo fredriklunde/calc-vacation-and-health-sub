@@ -1,13 +1,12 @@
-const defaultNumberOfPaidVacationDays = 25;
 const healtCareSub = 5000;
 
-export const getYearOfFirstVacationPeriod = function(startingDate) {
+export const getYearOfFirstVacationPeriod = function (startingDate) {
   let firstDayOfVacationYear = new Date(startingDate.getFullYear(), 3, 1);
   if (startingDate.getMonth() >= 3) {
     firstDayOfVacationYear = new Date(startingDate.getFullYear() + 1, 3, 1);
   }
   return firstDayOfVacationYear.getFullYear();
-}
+};
 
 function isLeapYear(year) {
   return year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
@@ -18,7 +17,9 @@ const daysOfAYear = function (year) {
 };
 
 const calculateDayOfYear = function (startingDate) {
-  return Math.ceil((startingDate - new Date(startingDate.getFullYear(), 0, 1)) / 86400000);
+  return Math.ceil(
+    (startingDate - new Date(startingDate.getFullYear(), 0, 1)) / 86400000
+  );
 };
 
 /*
@@ -28,7 +29,8 @@ Antalet semesterdagar per år * antalet anställningsdagar aktuellt intjänande�
 */
 export const calculateNumberOfVacationDays = function (
   startingDate,
-  firstDayOfEarningYear
+  firstDayOfEarningYear,
+  numberOfPaidVacationDays
 ) {
   const startingDateDayNumberOfEarningYear = Math.ceil(
     (startingDate - firstDayOfEarningYear) / 86400000
@@ -39,7 +41,7 @@ export const calculateNumberOfVacationDays = function (
   const numberOfDaysWorkedThisEarningYear =
     numberOfDaysOfEarningYear - startingDateDayNumberOfEarningYear;
   const numberOfVacationDays = Math.ceil(
-    (numberOfDaysWorkedThisEarningYear * defaultNumberOfPaidVacationDays) /
+    (numberOfDaysWorkedThisEarningYear * numberOfPaidVacationDays) /
       numberOfDaysOfEarningYear
   );
   if (numberOfVacationDays <= 0) {
@@ -57,8 +59,11 @@ export const calculateHealthCareSub = function (startingDate) {
   return healtCareSubThisYear;
 };
 
-export const calculateNumberOfVacationDaysNextPeriod = function (startingDate) {
-  var numberOfVacationDays = defaultNumberOfPaidVacationDays;
+export const calculateNumberOfVacationDaysNextPeriod = function (
+  startingDate,
+  numberOfPaidVacationDays
+) {
+  var numberOfVacationNextPeriod;
   //the first day of the earning year is april 1st
   let firstDayOfEarningYear = new Date(startingDate.getFullYear() - 1, 3, 1);
   if (startingDate.getMonth() >= 3) {
@@ -69,9 +74,10 @@ export const calculateNumberOfVacationDaysNextPeriod = function (startingDate) {
     Antalet semesterdagar per år * antalet anställningsdagar aktuellt intjänandeår/ antal dagar på året 
     (avrundas alltid uppåt till hela semesterdagar)
   */
-  numberOfVacationDays = calculateNumberOfVacationDays(
+  numberOfVacationNextPeriod = calculateNumberOfVacationDays(
     startingDate,
-    firstDayOfEarningYear
+    firstDayOfEarningYear,
+    numberOfPaidVacationDays
   );
-  return numberOfVacationDays;
+  return numberOfVacationNextPeriod;
 };

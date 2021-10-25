@@ -12,12 +12,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       startingDate: null,
+      numberOfPaidVacationDays: 25,
       healtCareSubThisYear: 0,
       vacationDaysNextPeriod: 0,
       vacationDaysThisPeriod: 0,
       message: null,
     };
     this.onDateChange = this.onDateChange.bind(this);
+    this.onNumberOfPaidVacationDaysChange =
+      this.onNumberOfPaidVacationDaysChange.bind(this);
   }
 
   setHealthCareSub(startingDate) {
@@ -28,8 +31,10 @@ class App extends React.Component {
 
   setVactationDays(startingDate) {
     this.setState({
-      vacationDaysNextPeriod:
-        calculateNumberOfVacationDaysNextPeriod(startingDate),
+      vacationDaysNextPeriod: calculateNumberOfVacationDaysNextPeriod(
+        startingDate,
+        this.state.numberOfPaidVacationDays
+      ),
     });
   }
 
@@ -37,6 +42,15 @@ class App extends React.Component {
     this.setState({
       message: message,
     });
+  }
+
+  onNumberOfPaidVacationDaysChange(e) {
+    this.setState({
+      numberOfPaidVacationDays: e.target.value,
+    });
+    if(this.state.startingDate){
+      this.setVactationDays(this.state.startingDate);
+    }
   }
 
   onDateChange(startingDate) {
@@ -82,14 +96,27 @@ class App extends React.Component {
           nästa semesterår, samt hur mycket Friskvårdsbidrag du har rätt till
           under kalenderåret du blev anställd.
         </div>
-        <div style={{ paddingTop: "30px", paddingBottom: "30px" }}>
+        <h5 className="ui header">Antal semesterdagar</h5>
+        <div className="ui right labeled input">
+          <input
+            type="number"
+            value={this.state.numberOfPaidVacationDays}
+            name="quantity" min="25"
+            placeholder={this.state.numberOfPaidVacationDays}
+            onChange={this.onNumberOfPaidVacationDaysChange}
+          />
+          <div className="ui basic label">Dagar</div>
+        </div>
+
+        <h5 className="ui header">Välj startdatum</h5>
+        <div style={{ paddingBottom: "30px" }}>
           <DatePicker
             onChange={this.onDateChange}
             value={this.state.startingDate}
           />
         </div>
         <div>
-          Starting Date:{" "}
+          Startdatum:{" "}
           {this.state.startingDate
             ? moment(this.state.startingDate).format("YYYY-MM-DD")
             : ""}
