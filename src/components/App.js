@@ -33,6 +33,12 @@ class App extends React.Component {
     });
   }
 
+  setMessage(message) {
+    this.setState({
+      message: message,
+    });
+  }
+
   onDateChange(startingDate) {
     if (!startingDate) {
       return;
@@ -42,11 +48,14 @@ class App extends React.Component {
     });
     this.setHealthCareSub(startingDate);
     this.setVactationDays(startingDate);
+    this.setMessage(
+      `Framtida år / perioder kommer att vara berättigade fullt bidrag och fullt antal semesterdagar.`
+    );
   }
 
   renderMessage() {
     if (this.state.message) {
-      return <h5 className="ui info message">{this.state.message}</h5>;
+      return <p className="ui info message">{this.state.message}</p>;
     }
   }
 
@@ -69,7 +78,7 @@ class App extends React.Component {
       <div className="ui container">
         <h1 className="ui header">Friskvårdsbidragsuträknare</h1>
         <div className="sub header">
-          Applikationen räknar ut hur mycket semeser du hinner jobba in till
+          Applikationen räknar ut hur mycket semester du hinner jobba in till
           nästa semesterår, samt hur mycket Friskvårdsbidrag du har rätt till
           under kalenderåret du blev anställd.
         </div>
