@@ -48,7 +48,7 @@ class App extends React.Component {
     this.setState({
       numberOfPaidVacationDays: e.target.value,
     });
-    if(this.state.startingDate){
+    if (this.state.startingDate) {
       this.setVactationDays(this.state.startingDate);
     }
   }
@@ -101,7 +101,8 @@ class App extends React.Component {
           <input
             type="number"
             value={this.state.numberOfPaidVacationDays}
-            name="quantity" min="25"
+            name="quantity"
+            min="25"
             placeholder={this.state.numberOfPaidVacationDays}
             onChange={this.onNumberOfPaidVacationDaysChange}
           />
