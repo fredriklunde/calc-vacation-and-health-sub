@@ -59,3 +59,14 @@ describe("calculateHealthCareSub", () => {
     expect(calculateHealthCareSub(date)).toBe(425);
   });
 });
+
+describe("calculateNumberOfVacationDaysNextPeriod", () => {
+  it("2018-01-01 returns 7", () => {
+    const date = new Date("2018-01-01T13:24:00");
+    expect(calculateNumberOfVacationDaysNextPeriod(date, 25)).toBe(7);
+  });
+  it("2018-12-01 returns 9", () => {
+    const date = new Date("2018-12-01T13:24:00");
+    expect(calculateNumberOfVacationDaysNextPeriod(date, 25)).toBe(9);
+  });
+});
