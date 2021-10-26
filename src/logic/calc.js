@@ -8,20 +8,6 @@ export const getYearOfFirstVacationPeriod = function (startingDate) {
   return firstDayOfVacationYear.getFullYear();
 };
 
-function isLeapYear(year) {
-  return year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
-}
-
-const daysOfAYear = function (year) {
-  return isLeapYear(year) ? 366 : 365;
-};
-
-const calculateDayOfYear = function (startingDate) {
-  return Math.ceil(
-    (startingDate - new Date(startingDate.getFullYear(), 0, 1)) / 86400000
-  );
-};
-
 /*
 Antalet betalda semesterdagar beräknas som: 
 Antalet semesterdagar per år * antalet anställningsdagar aktuellt intjänandeår/ antal dagar på året 
@@ -52,9 +38,9 @@ export const calculateNumberOfVacationDays = function (
 
 export const calculateHealthCareSub = function (startingDate) {
   const dayOfYear = calculateDayOfYear(startingDate);
-  const workingDaysThisYear = daysOfAYear(startingDate) - dayOfYear;
+  const workingDaysThisYear = daysOfAYear(startingDate.getFullYear()) - dayOfYear + 1;
   const healtCareSubThisYear = Math.round(
-    healtCareSub * (workingDaysThisYear / daysOfAYear(startingDate))
+    healtCareSub * (workingDaysThisYear / daysOfAYear(startingDate.getFullYear()))
   );
   return healtCareSubThisYear;
 };
@@ -82,8 +68,29 @@ export const calculateNumberOfVacationDaysNextPeriod = function (
   return numberOfVacationNextPeriod;
 };
 
+/*
+Helper methods
+*/
+
+function isLeapYear(year) {
+  return year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0);
+}
+
+const daysOfAYear = function (year) {
+  return isLeapYear(year) ? 366 : 365;
+};
+
+const calculateDayOfYear = function (startingDate) {
+  return Math.ceil(
+    (startingDate - new Date(startingDate.getFullYear(), 0, 1)) / 86400000
+  );
+};
+
 module.exports = {
   daysOfAYear,
   isLeapYear,
   calculateDayOfYear,
+  getYearOfFirstVacationPeriod,
+  calculateHealthCareSub,
+  calculateNumberOfVacationDaysNextPeriod,
 };
