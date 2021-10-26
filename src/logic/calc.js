@@ -81,3 +81,9 @@ export const calculateNumberOfVacationDaysNextPeriod = function (
   );
   return numberOfVacationNextPeriod;
 };
+
+module.exports = {
+  daysOfAYear,
+  isLeapYear,
+  calculateDayOfYear,
+};
