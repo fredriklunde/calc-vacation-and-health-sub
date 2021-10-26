@@ -69,4 +69,8 @@ describe("calculateNumberOfVacationDaysNextPeriod", () => {
     const date = new Date("2018-12-01T13:24:00");
     expect(calculateNumberOfVacationDaysNextPeriod(date, 25)).toBe(9);
   });
+  it("2018-04-01 returns 25", () => {
+    const date = new Date("2018-04-01T13:24:00");
+    expect(calculateNumberOfVacationDaysNextPeriod(date, 25)).toBe(25);
+  });
 });
