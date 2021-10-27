@@ -38,9 +38,11 @@ export const calculateNumberOfVacationDays = function (
 
 export const calculateHealthCareSub = function (startingDate) {
   const dayOfYear = calculateDayOfYear(startingDate);
-  const workingDaysThisYear = daysOfAYear(startingDate.getFullYear()) - dayOfYear + 1;
+  const workingDaysThisYear =
+    daysOfAYear(startingDate.getFullYear()) - dayOfYear + 1;
   const healtCareSubThisYear = Math.round(
-    healtCareSub * (workingDaysThisYear / daysOfAYear(startingDate.getFullYear()))
+    healtCareSub *
+      (workingDaysThisYear / daysOfAYear(startingDate.getFullYear()))
   );
   return healtCareSubThisYear;
 };
@@ -86,11 +88,8 @@ const calculateDayOfYear = function (startingDate) {
   );
 };
 
-module.exports = {
+export const exportedForTesting = {
   daysOfAYear,
   isLeapYear,
   calculateDayOfYear,
-  getYearOfFirstVacationPeriod,
-  calculateHealthCareSub,
-  calculateNumberOfVacationDaysNextPeriod,
 };

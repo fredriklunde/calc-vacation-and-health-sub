@@ -1,11 +1,11 @@
-const {
+import {
   getYearOfFirstVacationPeriod,
   calculateHealthCareSub,
   calculateNumberOfVacationDaysNextPeriod,
-  daysOfAYear,
-  isLeapYear,
-  calculateDayOfYear,
-} = require("./calc");
+  exportedForTesting,
+} from "./calc";
+
+const { daysOfAYear, isLeapYear, calculateDayOfYear } = exportedForTesting;
 
 describe("isLeapYear", () => {
   it("2019 returns false", () => {
@@ -50,12 +50,10 @@ describe("getYearOfFirstVacationPeriod", () => {
 describe("calculateHealthCareSub", () => {
   it("2018-01-02 returns 4986", () => {
     const date = new Date("2018-01-02T13:24:00");
-    console.log(date);
     expect(calculateHealthCareSub(date)).toBe(4986);
   });
   it("2018-12-01 returns 425", () => {
     const date = new Date("2018-12-01T13:24:00");
-    console.log(date);
     expect(calculateHealthCareSub(date)).toBe(425);
   });
 });
