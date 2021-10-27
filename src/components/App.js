@@ -15,7 +15,6 @@ class App extends React.Component {
       numberOfPaidVacationDays: 25,
       healtCareSubThisYear: 0,
       vacationDaysNextPeriod: 0,
-      vacationDaysThisPeriod: 0,
       message: null,
     };
     this.onDateChange = this.onDateChange.bind(this);
