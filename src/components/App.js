@@ -2,10 +2,22 @@ import React from "react";
 import DatePicker from "react-date-picker";
 import moment from "moment";
 import {
+  Container,
+  Header,
+  Input,
+  Divider,
+  Icon,
+  Grid,
+  Segment,
+} from "semantic-ui-react";
+
+import {
   getYearOfFirstVacationPeriod,
   calculateHealthCareSub,
   calculateNumberOfVacationDaysNextPeriod,
 } from "../logic/calc";
+
+const square = { width: 175, height: 175 };
 
 class App extends React.Component {
   constructor(props) {
@@ -88,33 +100,31 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="ui container">
-        <h1 className="ui header">Friskvårdsbidragsuträknare</h1>
-        <div className="sub header">
+      <Container text style={{ margin: 20 }}>
+        <Header as="h1">Friskvårdsbidragsuträknare</Header>
+        <p>
           Applikationen räknar ut hur mycket semester du hinner jobba in till
           nästa semesterår, samt hur mycket Friskvårdsbidrag du har rätt till
           under kalenderåret du blev anställd.
-        </div>
-        <h5 className="ui header">Antal semesterdagar</h5>
-        <div className="ui right labeled input">
-          <input
-            type="number"
-            value={this.state.numberOfPaidVacationDays}
-            name="quantity"
-            min="25"
-            placeholder={this.state.numberOfPaidVacationDays}
-            onChange={this.onNumberOfPaidVacationDaysChange}
-          />
-          <div className="ui basic label">Dagar</div>
-        </div>
-
-        <h5 className="ui header">Välj startdatum</h5>
-        <div style={{ paddingBottom: "30px" }}>
-          <DatePicker
-            onChange={this.onDateChange}
-            value={this.state.startingDate}
-          />
-        </div>
+        </p>
+        <Header as="h5">Välj startdatum</Header>
+        <DatePicker
+          onChange={this.onDateChange}
+          value={this.state.startingDate}
+        />
+        <Header as="h5">Antal semesterdagar</Header>
+        <Input
+          label={{ basic: true, content: "Dagar" }}
+          labelPosition="right"
+          type="number"
+          size="mini"
+          value={this.state.numberOfPaidVacationDays}
+          name="quantity"
+          min="25"
+          placeholder={this.state.numberOfPaidVacationDays}
+          onChange={this.onNumberOfPaidVacationDaysChange}
+        />
+        <Divider />
         <div>
           Startdatum:{" "}
           {this.state.startingDate
@@ -130,7 +140,48 @@ class App extends React.Component {
         </div>
         {this.renderVacationDaysText()}
         {this.renderMessage()}
-      </div>
+
+        <Grid container columns={3}>
+          <Grid.Column>
+            <Segment circular style={square}>
+              <Header as="h2">
+                Startdatum!
+                <Header.Subheader>
+                  {" "}
+                  {this.state.startingDate
+                    ? moment(this.state.startingDate).format("YYYY-MM-DD")
+                    : ""}
+                </Header.Subheader>
+              </Header>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column>
+            <Segment circular style={square}>
+              <Header as="h2">
+                Friskvårdsbidrag
+                <Header.Subheader>
+                  {" "}
+                  {this.state.startingDate
+                    ? moment(this.state.startingDate).format("YYYY")
+                    : ""}
+                  : {this.state.healtCareSubThisYear}
+                </Header.Subheader>
+              </Header>
+            </Segment>
+          </Grid.Column>
+          <Grid.Column>
+            <Segment circular style={square}>
+              <Header as="h2">
+                Semesterdagar
+                <Header.Subheader>
+                  {" "}
+                  {this.renderVacationDaysText()}
+                </Header.Subheader>
+              </Header>
+            </Segment>
+          </Grid.Column>
+        </Grid>
+      </Container>
     );
   }
 }
