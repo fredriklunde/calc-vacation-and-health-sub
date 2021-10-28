@@ -6,9 +6,9 @@ import {
   Header,
   Input,
   Divider,
-  Icon,
   Grid,
   Segment,
+  Icon,
 } from "semantic-ui-react";
 
 import {
@@ -17,7 +17,7 @@ import {
   calculateNumberOfVacationDaysNextPeriod,
 } from "../logic/calc";
 
-const square = { width: 175, height: 175 };
+const square = { width: 200, height: 200 };
 
 class App extends React.Component {
   constructor(props) {
@@ -90,10 +90,62 @@ class App extends React.Component {
         this.state.startingDate
       );
       return (
-        <div>
+        <Header as="h4" textAlign="center">
           Intjänade semesterdagar period 1/4/{yearOfFirstVacationYear} - 31/3/
-          {yearOfFirstVacationYear + 1}: {this.state.vacationDaysNextPeriod}
-        </div>
+          {yearOfFirstVacationYear + 1}
+        </Header>
+      );
+    }
+  }
+
+  renderInfoBlobs() {
+    if (this.state.startingDate) {
+      return (
+        <Grid stackable columns={3}>
+          <Grid.Column>
+            <Segment circular style={square}>
+              <Header as="h3" icon>
+                <Icon name="angle right" />
+                Startdatum!
+                <Header.Subheader>
+                  {" "}
+                  {this.state.startingDate
+                    ? moment(this.state.startingDate).format("YYYY-MM-DD")
+                    : ""}
+                </Header.Subheader>
+              </Header>
+            </Segment>
+            <Header as="h4" textAlign="center">
+              Beräkningen baseras på ditt startdatum
+            </Header>
+          </Grid.Column>
+          <Grid.Column>
+            <Segment circular style={square}>
+              <Header as="h3" icon>
+                <Icon name="heart" />
+                Friskvårdsbidrag
+                <Header.Subheader>
+                  {this.state.healtCareSubThisYear}
+                </Header.Subheader>
+              </Header>
+            </Segment>
+            <Header as="h4" textAlign="center">
+              Friskvårdsbidrag {moment(this.state.startingDate).format("YYYY")}
+            </Header>
+          </Grid.Column>
+          <Grid.Column>
+            <Segment circular style={square}>
+              <Header as="h3" icon>
+                <Icon name="sun" />
+                Semesterdagar
+                <Header.Subheader>
+                  {this.state.vacationDaysNextPeriod}
+                </Header.Subheader>
+              </Header>
+            </Segment>
+            {this.renderVacationDaysText()}
+          </Grid.Column>
+        </Grid>
       );
     }
   }
@@ -125,62 +177,9 @@ class App extends React.Component {
           onChange={this.onNumberOfPaidVacationDaysChange}
         />
         <Divider />
-        <div>
-          Startdatum:{" "}
-          {this.state.startingDate
-            ? moment(this.state.startingDate).format("YYYY-MM-DD")
-            : ""}
-        </div>
-        <div>
-          Friskvårdsbidrag{" "}
-          {this.state.startingDate
-            ? moment(this.state.startingDate).format("YYYY")
-            : ""}
-          : {this.state.healtCareSubThisYear}
-        </div>
-        {this.renderVacationDaysText()}
-        {this.renderMessage()}
 
-        <Grid container columns={3}>
-          <Grid.Column>
-            <Segment circular style={square}>
-              <Header as="h2">
-                Startdatum!
-                <Header.Subheader>
-                  {" "}
-                  {this.state.startingDate
-                    ? moment(this.state.startingDate).format("YYYY-MM-DD")
-                    : ""}
-                </Header.Subheader>
-              </Header>
-            </Segment>
-          </Grid.Column>
-          <Grid.Column>
-            <Segment circular style={square}>
-              <Header as="h2">
-                Friskvårdsbidrag
-                <Header.Subheader>
-                  {" "}
-                  {this.state.startingDate
-                    ? moment(this.state.startingDate).format("YYYY")
-                    : ""}
-                  : {this.state.healtCareSubThisYear}
-                </Header.Subheader>
-              </Header>
-            </Segment>
-          </Grid.Column>
-          <Grid.Column>
-            <Segment circular style={square}>
-              <Header as="h2">
-                Semesterdagar
-                <Header.Subheader>
-                  {" "}
-                  {this.renderVacationDaysText()}
-                </Header.Subheader>
-              </Header>
-            </Segment>
-          </Grid.Column>
-        </Grid>
+        {this.renderInfoBlobs()}
+        {this.renderMessage()}
       </Container>
     );
   }
