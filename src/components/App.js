@@ -108,10 +108,7 @@ class App extends React.Component {
                 <Icon name="angle right" />
                 Startdatum!
                 <Header.Subheader>
-                  {" "}
-                  {this.state.startingDate
-                    ? moment(this.state.startingDate).format("YYYY-MM-DD")
-                    : ""}
+                  {moment(this.state.startingDate).format("YYYY-MM-DD")}
                 </Header.Subheader>
               </Header>
             </Segment>
