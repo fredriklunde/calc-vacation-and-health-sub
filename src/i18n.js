@@ -17,6 +17,9 @@ const resources = {
   },
   sv: {
     translation: translationSE
+  },
+  "sv-SE": {
+    translation: translationSE
   }
 };
 
@@ -37,6 +40,7 @@ i18n
     fallbackLng: 'en',
     resources,
     debug: true,
+    lngWhitelist: ['se', 'en'],
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
