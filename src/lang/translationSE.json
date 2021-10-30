@@ -1,8 +1,4 @@
 {
-    "title": "asasa",
-    "description": {
-      "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-      "part2": "sdasdasdasd."
-    }
-  }
-  
+  "title": "Friskvårdsbidrags- & Semester Kalkylator",
+  "sub-title": "Applikationen räknar ut hur mycket semester du hinner jobba in till nästa semesterår, samt hur mycket Friskvårdsbidrag du har rätt till under kalenderåret du blev anställd."
+}

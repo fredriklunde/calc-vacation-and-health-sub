@@ -1,8 +1,4 @@
 {
-    "title": "Welcome to react using react-i18next",
-    "description": {
-      "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-      "part2": "Switch language between english and german using buttons above."
-    }
-  }
-  
+  "title": "Wellness Allowance & Vacation Calculator",
+  "sub-title": "The Application calculates how many vacation days you will accumulate for your next vacation period. It will aslo calculate how much Wellness Allowance you can use during your first year of employment."
+}
