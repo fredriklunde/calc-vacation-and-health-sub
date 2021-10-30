@@ -1,4 +1,17 @@
 {
   "title": "Friskvårdsbidrags- & Semester Kalkylator",
-  "sub-title": "Applikationen räknar ut hur mycket semester du hinner jobba in till nästa semesterår, samt hur mycket Friskvårdsbidrag du har rätt till under kalenderåret du blev anställd."
+  "sub-title": "Applikationen räknar ut hur mycket semester du hinner jobba in till nästa semesterår, samt hur mycket Friskvårdsbidrag du har rätt till under kalenderåret du blev anställd.",
+  "start-date": "Startdatum!",
+  "start-date-sub-title": "Beräkningen baseras på ditt startdatum",
+  "select-star-date": "Välj stardatum",
+  "message": {
+    "informationOnFuture": "Framtida år / perioder kommer att vara berättigade fullt bidrag och fullt antal semesterdagar."
+  },
+  "wellness-allowance": "Friskvårdsbidrag",
+  "vacation": {
+    "vacation-days": "Semesterdagar",
+    "number-of-vacation-days": "Antal semesterdagar",
+    "sub-info" : "Intjänade semesterdagar period 1/4/{{startYear}} - 31/3/{{endYear}}"
+  },
+  "days":  "Dagar"
 }

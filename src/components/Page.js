@@ -59,9 +59,7 @@ function Page() {
     setStartingDate(startingDate);
     setHealthCareSub(startingDate);
     setVactationDays(startingDate);
-    setMessage(
-      `Framtida år / perioder kommer att vara berättigade fullt bidrag och fullt antal semesterdagar.`
-    );
+    setMessage(t("message.informationOnFuture"));
   };
 
   const renderMessage = () => {
@@ -72,12 +70,15 @@ function Page() {
 
   const renderVacationDaysText = () => {
     if (startingDate) {
-      const yearOfFirstVacationYear =
+      const startYearOfFirstVacationYear =
         getYearOfFirstVacationPeriod(startingDate);
+      const endYearOfFirstVacationYear = startYearOfFirstVacationYear + 1;
       return (
         <Header as="h4" textAlign="center">
-          Intjänade semesterdagar period 1/4/{yearOfFirstVacationYear} - 31/3/
-          {yearOfFirstVacationYear + 1}
+          {t("vacation.sub-info", {
+            startYear: startYearOfFirstVacationYear,
+            endYear: endYearOfFirstVacationYear,
+          })}
         </Header>
       );
     }
@@ -91,33 +92,33 @@ function Page() {
             <Segment circular style={square}>
               <Header as="h3" icon>
                 <Icon name="angle right" />
-                Startdatum!
+                {t("start-date")}
                 <Header.Subheader>
                   {moment(startingDate).format("YYYY-MM-DD")}
                 </Header.Subheader>
               </Header>
             </Segment>
             <Header as="h4" textAlign="center">
-              Beräkningen baseras på ditt startdatum
+              {t("start-date-sub-title")}
             </Header>
           </Grid.Column>
           <Grid.Column>
             <Segment circular style={square}>
               <Header as="h3" icon>
                 <Icon name="heart" />
-                Friskvårdsbidrag
+                {t("wellness-allowance")}
                 <Header.Subheader>{healtCareSubThisYear}</Header.Subheader>
               </Header>
             </Segment>
             <Header as="h4" textAlign="center">
-              Friskvårdsbidrag {moment(startingDate).format("YYYY")}
+              {t("wellness-allowance")} {moment(startingDate).format("YYYY")}
             </Header>
           </Grid.Column>
           <Grid.Column>
             <Segment circular style={square}>
               <Header as="h3" icon>
                 <Icon name="sun" />
-                Semesterdagar
+                {t("vacation.vacation-days")}
                 <Header.Subheader>{vacationDaysNextPeriod}</Header.Subheader>
               </Header>
             </Segment>
@@ -140,11 +141,11 @@ function Page() {
       </div>
       <Header as="h1">{t("title")}</Header>
       <p>{t("sub-title")}</p>
-      <Header as="h5">Välj startdatum</Header>
+      <Header as="h5">{t("select-star-date")}</Header>
       <DatePicker onChange={onDateChange} value={startingDate} />
-      <Header as="h5">Antal semesterdagar</Header>
+      <Header as="h5">{t("vacation.number-of-vacation-days")}</Header>
       <Input
-        label={{ basic: true, content: "Dagar" }}
+        label={{ basic: true, content: t("days") }}
         labelPosition="right"
         type="number"
         size="mini"
