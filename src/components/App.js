@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-date-picker";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 import {
   Container,
   Header,
@@ -20,6 +21,11 @@ import {
 const square = { width: 200, height: 200 };
 
 function App() {
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   const [startingDate, setStartingDate] = useState(null);
   const [numberOfPaidVacationDays, setNumberOfPaidVacationDays] = useState(25);
   const [healtCareSubThisYear, setHealtCareSubThisYear] = useState(0);
@@ -124,6 +130,16 @@ function App() {
 
   return (
     <Container text style={{ margin: 20 }}>
+      <div>{t("description.part2")}</div>
+
+      <div>
+        <button type="submit" onClick={() => changeLanguage("sv")}>
+          sv
+        </button>
+        <button type="submit" onClick={() => changeLanguage("en")}>
+          en
+        </button>
+      </div>
       <Header as="h1">Friskvårdsbidragsuträknare</Header>
       <p>
         Applikationen räknar ut hur mycket semester du hinner jobba in till
