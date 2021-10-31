@@ -17,15 +17,13 @@ import {
   calculateHealthCareSub,
   calculateNumberOfVacationDaysNextPeriod,
 } from "../logic/calc";
+import LanguageSelector from "./common/LanguageSelector";
 
 const square = { width: 200, height: 200 };
 
 function Page() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
   const [startingDate, setStartingDate] = useState(null);
   const [numberOfPaidVacationDays, setNumberOfPaidVacationDays] = useState(25);
   const [healtCareSubThisYear, setHealtCareSubThisYear] = useState(0);
@@ -131,14 +129,7 @@ function Page() {
 
   return (
     <Container text style={{ margin: 20 }}>
-      <div>
-        <button type="submit" onClick={() => changeLanguage("sv")}>
-          sv
-        </button>
-        <button type="submit" onClick={() => changeLanguage("en")}>
-          en
-        </button>
-      </div>
+      <LanguageSelector />
       <Header as="h1">{t("title")}</Header>
       <p>{t("sub-title")}</p>
       <Header as="h5">{t("select-star-date")}</Header>

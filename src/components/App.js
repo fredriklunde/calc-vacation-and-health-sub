@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 
 import Page from "./Page";
-import Loader from "./Loader";
+import Loader from "./common/Loader";
 
 function App() {
   return (
