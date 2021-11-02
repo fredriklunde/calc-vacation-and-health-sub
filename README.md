@@ -3,3 +3,10 @@ Based on the users starting date, the user is given information about his vacati
 
 ## How it works
 The user enters his starting date (First day of employment) and based on that, the amount of wellness grant is calculated. The application also calculates how many vacation days the employee will have rigth to during the next vacation period, based on starting date.
+
+## Instructions
+To start the project locally
+```
+npm install
+npm start
+```
