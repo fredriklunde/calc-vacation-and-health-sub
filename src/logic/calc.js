@@ -18,8 +18,9 @@ export const calculateNumberOfVacationDays = function (
   firstDayOfEarningYear,
   numberOfPaidVacationDays
 ) {
+  const oneDayWorthOfMiliseconds = 86400000;
   const startingDateDayNumberOfEarningYear = Math.ceil(
-    (startingDate - firstDayOfEarningYear) / 86400000
+    (startingDate - firstDayOfEarningYear) / oneDayWorthOfMiliseconds
   );
   const numberOfDaysOfEarningYear = daysOfAYear(
     firstDayOfEarningYear.getFullYear() + 1
