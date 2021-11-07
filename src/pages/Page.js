@@ -8,7 +8,7 @@ import {
   calculateNumberOfVacationDaysNextPeriod,
 } from "../logic/calc";
 import LanguageSelector from "../components/common/LanguageSelector";
-import ResultBlobs from "../components/ResultBlobs";
+import ResultSection from "../components/ResultSection";
 
 function Page() {
   const { t } = useTranslation();
@@ -72,7 +72,7 @@ function Page() {
       />
       <Divider />
       {startingDate ? (
-        <ResultBlobs
+        <ResultSection
           startingDate={startingDate}
           healtCareSubThisYear={healtCareSubThisYear}
           vacationDaysNextPeriod={vacationDaysNextPeriod}
