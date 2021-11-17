@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import moment from "moment";
-import { Header, Grid } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import InfoCircle from "./common/InfoCircle";
 
 import { getYearOfFirstVacationPeriod } from "../logic/calc";
@@ -12,22 +12,9 @@ function ResultSection({
   vacationDaysNextPeriod,
 }) {
   const { t } = useTranslation();
-
-  const renderVacationDaysText = () => {
-    if (startingDate) {
-      const startYearOfFirstVacationYear =
-        getYearOfFirstVacationPeriod(startingDate);
-      const endYearOfFirstVacationYear = startYearOfFirstVacationYear + 1;
-      return (
-        <Header as="h4" textAlign="center">
-          {t("vacation.sub-info", {
-            startYear: startYearOfFirstVacationYear,
-            endYear: endYearOfFirstVacationYear,
-          })}
-        </Header>
-      );
-    }
-  };
+  const startYearOfFirstVacationYear =
+    getYearOfFirstVacationPeriod(startingDate);
+  const endYearOfFirstVacationYear = startYearOfFirstVacationYear + 1;
 
   return (
     <Grid stackable columns={3}>
@@ -53,7 +40,10 @@ function ResultSection({
         <InfoCircle
           header={t("vacation.vacation-days")}
           subHeader={vacationDaysNextPeriod}
-          description={renderVacationDaysText}
+          description={t("vacation.sub-info", {
+            startYear: startYearOfFirstVacationYear,
+            endYear: endYearOfFirstVacationYear,
+          })}
           icon="sun"
         />
       </Grid.Column>
