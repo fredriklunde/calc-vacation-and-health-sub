@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AACA,mBACE,YAAa,CACb,kBACF","file":"main.afd431c1.chunk.css","sourcesContent":["/* Align label on date-input */\r\ndiv.ui.basic.label {\r\n  display: flex;\r\n  align-items: center;\r\n}\r\n"]}
