@@ -15,11 +15,11 @@ function Page() {
 
   const [startingDate, setStartingDate] = useState(null);
   const [numberOfPaidVacationDays, setNumberOfPaidVacationDays] = useState(25);
-  const [healtCareSubThisYear, setHealtCareSubThisYear] = useState(0);
+  const [healthCareSubThisYear, setHealthCareSubThisYear] = useState(0);
   const [vacationDaysNextPeriod, setVacationDaysNextPeriod] = useState(0);
   const [message, setMessage] = useState(null);
 
-  const setVactationDays = (startingDate) => {
+  const setVacationDays = (startingDate) => {
     const vacationDaysNextPeriod = calculateNumberOfVacationDaysNextPeriod(
       startingDate,
       numberOfPaidVacationDays
@@ -30,7 +30,7 @@ function Page() {
   const onNumberOfPaidVacationDaysChange = (e) => {
     setNumberOfPaidVacationDays(e.target.value);
     if (startingDate) {
-      setVactationDays(startingDate);
+      setVacationDays(startingDate);
     }
   };
 
@@ -38,10 +38,10 @@ function Page() {
     if (!startingDate) {
       return;
     }
-    const healtCareSubThisYear = calculateHealthCareSub(startingDate);
-    setHealtCareSubThisYear(healtCareSubThisYear);
+    const healthCareSubThisYear = calculateHealthCareSub(startingDate);
+    setHealthCareSubThisYear(healthCareSubThisYear);
     setStartingDate(startingDate);
-    setVactationDays(startingDate);
+    setVacationDays(startingDate);
     setMessage(t("message.informationOnFuture"));
   };
 
@@ -74,7 +74,7 @@ function Page() {
       {startingDate ? (
         <ResultSection
           startingDate={startingDate}
-          healtCareSubThisYear={healtCareSubThisYear}
+          healthCareSubThisYear={healthCareSubThisYear}
           vacationDaysNextPeriod={vacationDaysNextPeriod}
         />
       ) : (
