@@ -11,12 +11,16 @@ function LanguageSelector() {
   };
   return (
     <div>
-      <button type="submit" onClick={() => changeLanguage("sv")}>
-        sv
-      </button>
-      <button type="submit" onClick={() => changeLanguage("en")}>
-        en
-      </button>
+      <i
+        className="se flag"
+        style={{ cursor: "pointer" }}
+        onClick={() => changeLanguage("sv")}
+      ></i>
+      <i
+        className="gb flag"
+        style={{ cursor: "pointer" }}
+        onClick={() => changeLanguage("en")}
+      ></i>
     </div>
   );
 }
