@@ -31,7 +31,7 @@ function ResultSection({
           header={t("wellness-allowance")}
           subHeader={healthCareSubThisYear}
           description={
-            t("wellness-allowance") + moment(startingDate).format("YYYY")
+            t("wellness-allowance") + " " + moment(startingDate).format("YYYY")
           }
           icon="heart"
         />
