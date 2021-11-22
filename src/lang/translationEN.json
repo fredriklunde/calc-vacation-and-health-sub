@@ -13,5 +13,6 @@
     "number-of-vacation-days": "Number of Vacation days",
     "sub-info": "Earned vacation days for period 1/4/{{startYear}} - 31/3/{{endYear}}"
   },
-  "days": "Days"
+  "days": "Days",
+  "date": "Date"
 }

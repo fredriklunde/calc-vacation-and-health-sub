@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import DatePicker from "react-date-picker";
 import { useTranslation } from "react-i18next";
 import { Container, Header, Input, Divider } from "semantic-ui-react";
 
@@ -34,14 +33,13 @@ function Page() {
     }
   };
 
-  const onDateChange = (startingDate) => {
-    if (!startingDate) {
-      return;
-    }
-    const healthCareSubThisYear = calculateHealthCareSub(startingDate);
+  const onDateChange = (event) => {
+    if (!event.target.value) return;
+    const date = new Date(event.target.value);
+    const healthCareSubThisYear = calculateHealthCareSub(date);
     setHealthCareSubThisYear(healthCareSubThisYear);
-    setStartingDate(startingDate);
-    setVacationDays(startingDate);
+    setStartingDate(date);
+    setVacationDays(date);
     setMessage(t("message.informationOnFuture"));
   };
 
@@ -57,7 +55,13 @@ function Page() {
       <Header as="h1">{t("title")}</Header>
       <p>{t("sub-title")}</p>
       <Header as="h5">{t("select-star-date")}</Header>
-      <DatePicker onChange={onDateChange} value={startingDate} />
+      <Input
+        type="date"
+        labelPosition="right"
+        size="mini"
+        label={{ basic: true, content: t("date") }}
+        onChange={onDateChange}
+      />
       <Header as="h5">{t("vacation.number-of-vacation-days")}</Header>
       <Input
         label={{ basic: true, content: t("days") }}

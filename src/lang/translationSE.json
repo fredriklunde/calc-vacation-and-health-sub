@@ -11,7 +11,8 @@
   "vacation": {
     "vacation-days": "Semesterdagar",
     "number-of-vacation-days": "Antal semesterdagar",
-    "sub-info" : "Intjänade semesterdagar period 1/4/{{startYear}} - 31/3/{{endYear}}"
+    "sub-info": "Intjänade semesterdagar period 1/4/{{startYear}} - 31/3/{{endYear}}"
   },
-  "days":  "Dagar"
+  "days": "Dagar",
+  "date": "Datum"
 }
