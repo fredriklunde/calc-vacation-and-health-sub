@@ -1,4 +1,4 @@
-const healtCareSub = 5000;
+const healthCareSub = 5000;
 
 export const getYearOfFirstVacationPeriod = function (startingDate) {
   let firstDayOfVacationYear = new Date(startingDate.getFullYear(), 3, 1);
@@ -18,9 +18,9 @@ export const calculateNumberOfVacationDays = function (
   firstDayOfEarningYear,
   numberOfPaidVacationDays
 ) {
-  const oneDayWorthOfMiliseconds = 86400000;
+  const oneDayWorthOfMilliseconds = 86400000;
   const startingDateDayNumberOfEarningYear = Math.ceil(
-    (startingDate - firstDayOfEarningYear) / oneDayWorthOfMiliseconds
+    (startingDate - firstDayOfEarningYear) / oneDayWorthOfMilliseconds
   );
   const numberOfDaysOfEarningYear = daysOfAYear(
     firstDayOfEarningYear.getFullYear() + 1
@@ -41,11 +41,11 @@ export const calculateHealthCareSub = function (startingDate) {
   const dayOfYear = calculateDayOfYear(startingDate);
   const workingDaysThisYear =
     daysOfAYear(startingDate.getFullYear()) - dayOfYear + 1;
-  const healtCareSubThisYear = Math.round(
-    healtCareSub *
+  const healthCareSubThisYear = Math.round(
+    healthCareSub *
       (workingDaysThisYear / daysOfAYear(startingDate.getFullYear()))
   );
-  return healtCareSubThisYear;
+  return healthCareSubThisYear;
 };
 
 export const calculateNumberOfVacationDaysNextPeriod = function (

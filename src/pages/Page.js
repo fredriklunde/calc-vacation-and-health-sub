@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import DatePicker from "react-date-picker";
 import { useTranslation } from "react-i18next";
 import { Container, Header, Input, Divider } from "semantic-ui-react";
 
@@ -15,11 +14,11 @@ function Page() {
 
   const [startingDate, setStartingDate] = useState(null);
   const [numberOfPaidVacationDays, setNumberOfPaidVacationDays] = useState(25);
-  const [healtCareSubThisYear, setHealtCareSubThisYear] = useState(0);
+  const [healthCareSubThisYear, setHealthCareSubThisYear] = useState(0);
   const [vacationDaysNextPeriod, setVacationDaysNextPeriod] = useState(0);
   const [message, setMessage] = useState(null);
 
-  const setVactationDays = (startingDate) => {
+  const setVacationDays = (startingDate) => {
     const vacationDaysNextPeriod = calculateNumberOfVacationDaysNextPeriod(
       startingDate,
       numberOfPaidVacationDays
@@ -30,18 +29,17 @@ function Page() {
   const onNumberOfPaidVacationDaysChange = (e) => {
     setNumberOfPaidVacationDays(e.target.value);
     if (startingDate) {
-      setVactationDays(startingDate);
+      setVacationDays(startingDate);
     }
   };
 
-  const onDateChange = (startingDate) => {
-    if (!startingDate) {
-      return;
-    }
-    const healtCareSubThisYear = calculateHealthCareSub(startingDate);
-    setHealtCareSubThisYear(healtCareSubThisYear);
-    setStartingDate(startingDate);
-    setVactationDays(startingDate);
+  const onDateChange = (event) => {
+    if (!event.target.value) return;
+    const date = new Date(event.target.value);
+    const healthCareSubThisYear = calculateHealthCareSub(date);
+    setHealthCareSubThisYear(healthCareSubThisYear);
+    setStartingDate(date);
+    setVacationDays(date);
     setMessage(t("message.informationOnFuture"));
   };
 
@@ -57,7 +55,13 @@ function Page() {
       <Header as="h1">{t("title")}</Header>
       <p>{t("sub-title")}</p>
       <Header as="h5">{t("select-star-date")}</Header>
-      <DatePicker onChange={onDateChange} value={startingDate} />
+      <Input
+        type="date"
+        labelPosition="right"
+        size="mini"
+        label={{ basic: true, content: t("date") }}
+        onChange={onDateChange}
+      />
       <Header as="h5">{t("vacation.number-of-vacation-days")}</Header>
       <Input
         label={{ basic: true, content: t("days") }}
@@ -74,7 +78,7 @@ function Page() {
       {startingDate ? (
         <ResultSection
           startingDate={startingDate}
-          healtCareSubThisYear={healtCareSubThisYear}
+          healthCareSubThisYear={healthCareSubThisYear}
           vacationDaysNextPeriod={vacationDaysNextPeriod}
         />
       ) : (

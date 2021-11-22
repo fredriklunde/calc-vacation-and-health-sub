@@ -1,0 +1,5 @@
+/* Align label on date-input */
+div.ui.basic.label {
+  display: flex;
+  align-items: center;
+}

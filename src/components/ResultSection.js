@@ -8,7 +8,7 @@ import { getYearOfFirstVacationPeriod } from "../logic/calc";
 
 function ResultSection({
   startingDate,
-  healtCareSubThisYear,
+  healthCareSubThisYear,
   vacationDaysNextPeriod,
 }) {
   const { t } = useTranslation();
@@ -29,7 +29,7 @@ function ResultSection({
       <Grid.Column>
         <InfoCircle
           header={t("wellness-allowance")}
-          subHeader={healtCareSubThisYear}
+          subHeader={healthCareSubThisYear}
           description={
             t("wellness-allowance") + moment(startingDate).format("YYYY")
           }

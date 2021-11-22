@@ -1,17 +1,18 @@
 {
   "title": "Wellness Allowance & Vacation Calculator",
-  "sub-title": "The Application calculates how many vacation days you will accumulate for your next vacation period. It will aslo calculate how much Wellness Allowance you can use during your first year of employment.",
+  "sub-title": "The Application calculates how many vacation days you will accumulate for your next vacation period. It will also calculate how much Wellness Allowance you can use during your first year of employment.",
   "start-date": "Start Date!",
   "start-date-sub-title": "The calculation is based on your start date",
   "select-star-date": "Select Start Date",
   "message": {
-    "informationOnFuture": "Comming years / vacation periods you will will be able to use your full number of vacation days and Wellness Allowance."
+    "informationOnFuture": "Coming years / vacation periods you will will be able to use your full number of vacation days and Wellness Allowance."
   },
   "wellness-allowance": "Wellness Allowance",
   "vacation": {
     "vacation-days": "Vacation Days",
     "number-of-vacation-days": "Number of Vacation days",
-    "sub-info" : "Earned vacation days for period 1/4/{{startYear}} - 31/3/{{endYear}}"
+    "sub-info": "Earned vacation days for period 1/4/{{startYear}} - 31/3/{{endYear}}"
   },
-  "days":  "Days"
+  "days": "Days",
+  "date": "Date"
 }
