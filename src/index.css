@@ -3,3 +3,33 @@ div.ui.basic.label {
   display: flex;
   align-items: center;
 }
+
+/* Create spacing for blue info container  */
+#root {
+  padding-bottom: 0.5rem;
+}
+
+/* Disables auto-zoom on focus and corrects styling on iOS */
+input {
+  font-size: 16px;
+}
+div.ui.mini.input {
+  min-height: 43px !important;
+}
+
+/* Center column content on smaller devices */
+div.column {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+}
+div.ui.circular.segment {
+  display: grid;
+  place-items: center;
+}
+h4.ui.header {
+  margin-top: 0;
+}
+h3.ui.icon.header {
+  margin: 0;
+}
